@@ -51,9 +51,13 @@ public class main {
 		//Issue issue = issueService.getIssueById(1);
 		//System.out.println(issue.getTradeList().get(0).getTradeNb());
 		
-		UserService uss = DataHibernateUtil.getUserService();
-		User user = uss.getUserByName("LLE");
-		System.out.println(user.getPwd());
+//		UserService uss = DataHibernateUtil.getUserService();
+//		User user = uss.getUserByName("LLE");
+//		System.out.println(user.getPwd());
+		
+		TradeService uss = DataHibernateUtil.getTradeService();
+		Trade user = uss.getTradeByNb("12345");
+		System.out.println(user.getIssueList().size());
 		
 		/*TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
 		

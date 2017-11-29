@@ -1,5 +1,6 @@
 package lle.crud.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import lle.crud.model.Trade;
@@ -15,5 +16,7 @@ public interface TradeService {
 	public List<Trade> getAllTrade(); 
 	
 	public Trade getTradeByNb(String nb);
+	
+	public List<Trade> getTradeByCriteria(HashMap<String,String> criteria);
 	
 }

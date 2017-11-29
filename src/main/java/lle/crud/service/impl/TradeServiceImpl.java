@@ -1,5 +1,6 @@
 package lle.crud.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,15 @@ public class TradeServiceImpl implements TradeService {
 
 	public Trade getTradeByNb(String nb) {		
 		return tradeDao.get(nb);
+	}
+
+	/** (non-Javadoc)
+	 * @see lle.crud.service.TradeService#getTradeByCriteria(java.util.HashMap).
+	 * @author LuanNgu
+	 */
+	public List<Trade> getTradeByCriteria(HashMap<String, String> criteria) {
+		// TODO Auto-generated method stub
+		return tradeDao.getTradeByCriteria(criteria);
 	}	
 	
 }
