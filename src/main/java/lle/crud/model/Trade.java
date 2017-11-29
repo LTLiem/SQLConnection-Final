@@ -71,6 +71,22 @@ public class Trade implements Serializable {
 		this.inputDate = inputDate;
 	}
 
+	/**@author LuanNgu
+	 * @param t
+	 * {@code copy creation}
+	 */
+	public Trade(Trade t)
+	{
+		super();
+		this.tradeNb = t.tradeNb;
+		this.instrument = t.instrument;
+		this.currency = t.currency;
+		this.portfolio = t.portfolio;
+		this.tradeHeader = t.tradeHeader;
+		this.trnStatus = t.trnStatus;
+		this.inputDate = t.inputDate;
+		this.issueList = new ArrayList<Issue>(t.issueList);
+	}
 	public String getTradeNb() {
 		return tradeNb;
 	}
