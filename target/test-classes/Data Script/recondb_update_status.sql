@@ -18,33 +18,28 @@ USE `recondb_update`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `trade_issue`
+-- Table structure for table `status`
 --
 
-DROP TABLE IF EXISTS `trade_issue`;
+DROP TABLE IF EXISTS `status`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `trade_issue` (
-  `trade_nb` varchar(20) NOT NULL,
-  `issue_id` int(11) NOT NULL,
-  `input_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`trade_nb`,`issue_id`),
-  KEY `FK992pupt35ekst7ri2wha7yb2c` (`issue_id`),
-  CONSTRAINT `FK992pupt35ekst7ri2wha7yb2c` FOREIGN KEY (`issue_id`) REFERENCES `issue` (`issue_id`),
-  CONSTRAINT `FKk0wy3gcwrqmqajo3xe3xhp2wa` FOREIGN KEY (`trade_nb`) REFERENCES `trade` (`trade_nb`),
-  CONSTRAINT `fk_issue` FOREIGN KEY (`issue_id`) REFERENCES `issue` (`issue_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_trade` FOREIGN KEY (`trade_nb`) REFERENCES `trade` (`trade_nb`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `status` (
+  `status_id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(45) NOT NULL,
+  `comment` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `trade_issue`
+-- Dumping data for table `status`
 --
 
-LOCK TABLES `trade_issue` WRITE;
-/*!40000 ALTER TABLE `trade_issue` DISABLE KEYS */;
-INSERT INTO `trade_issue` VALUES ('12345',1,'2017-11-29 00:00:00'),('12347',1,'2017-11-30 00:00:00'),('12348',1,'2017-12-01 00:00:00'),('12350',1,'2017-12-02 00:00:00'),('12351',1,'2017-12-03 00:00:00'),('12351',2,'2017-12-04 00:00:00'),('12352',2,'2017-12-05 00:00:00'),('12353',1,'2017-12-06 00:00:00'),('12353',2,'2017-12-07 00:00:00'),('12354',2,'2017-12-08 00:00:00'),('12356',2,'2017-12-09 00:00:00'),('12357',2,'2017-12-10 00:00:00');
-/*!40000 ALTER TABLE `trade_issue` ENABLE KEYS */;
+LOCK TABLES `status` WRITE;
+/*!40000 ALTER TABLE `status` DISABLE KEYS */;
+INSERT INTO `status` VALUES (1,'LIVE',NULL),(2,'PENDING',NULL),(3,'UNDER INVESTIGATION',NULL);
+/*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

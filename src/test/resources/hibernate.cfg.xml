@@ -9,5 +9,7 @@
     <mapping class="lle.crud.model.TradeIssueMap" />
     <mapping class="lle.crud.model.User" />
     <mapping class="lle.crud.model.Role" />
+    <mapping class="lle.crud.model.Status" />
+    <mapping class="lle.crud.model.Action" />
   </session-factory>
 </hibernate-configuration>

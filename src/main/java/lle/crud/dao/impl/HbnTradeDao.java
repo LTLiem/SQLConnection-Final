@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import lle.crud.dao.TradeDao;
 import lle.crud.model.Trade;
-import lle.crud.model.User;
 
 @Repository
 public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {

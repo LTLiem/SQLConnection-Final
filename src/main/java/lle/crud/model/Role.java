@@ -17,18 +17,18 @@ import javax.persistence.Table;
 public class Role implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "role_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int roleId;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String name;
-	
-	@Column(name="comment")
+
+	@Column(name = "comment")
 	private String comment;
-	
+
 	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
 	private List<User> userList;
 

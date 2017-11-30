@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `recondb_update` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `recondb_update`;
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: recondb_update
 -- ------------------------------------------------------
--- Server version	5.6.26-log
+-- Server version	5.7.20-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,13 +33,22 @@ CREATE TABLE `issue` (
   `different_type` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   `explanation` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `field_value` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `input_date` datetime NOT NULL,
-  `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `user` int(11) NOT NULL,
+  `input_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL,
+  `user_created` int(11) NOT NULL,
+  `last_action` int(11) DEFAULT NULL,
+  `last_date` datetime DEFAULT NULL,
+  `last_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`issue_id`),
-  KEY `fk_issue_user_idx` (`user`),
-  CONSTRAINT `fk_issue_user` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `fk_issue_user_idx` (`user_created`),
+  KEY `fk_status_status_idx` (`status`),
+  KEY `fk_lastuser_user_idx` (`last_user`),
+  KEY `fk_lastaction_action_idx` (`last_action`),
+  CONSTRAINT `fk_issue_user` FOREIGN KEY (`user_created`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_lastaction_action` FOREIGN KEY (`last_action`) REFERENCES `action` (`action_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_lastuser_user` FOREIGN KEY (`last_user`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_status_status` FOREIGN KEY (`status`) REFERENCES `status` (`status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +57,7 @@ CREATE TABLE `issue` (
 
 LOCK TABLES `issue` WRITE;
 /*!40000 ALTER TABLE `issue` DISABLE KEYS */;
-INSERT INTO `issue` VALUES (1,'F1','R1',NULL,'MX3',NULL,NULL,'F1V','2011-12-18 13:17:17','',1),(2,'F2','R2',NULL,'MX2',NULL,NULL,'F2V','2011-12-19 13:17:17','',1),(3,'F3','R2',NULL,'MX2',NULL,NULL,'F3V','2011-12-20 13:17:17','',0);
+INSERT INTO `issue` VALUES (1,'PC','Core recon','','MX3','Behavior difference','Past cash issue xxx','PC','2017-11-28 16:50:25',1,1,2,'2017-11-28 16:50:25',2),(2,'MV','Core recon','','MX2','Behavior difference','MV issue zzzz','MV','2017-11-28 16:50:25',1,1,2,'2017-11-28 16:50:25',2),(3,'FC','Core recon','','MX2','Behavior difference','FC issue zzzz','FC','2017-11-28 16:50:25',1,1,2,'2017-11-28 16:50:25',2),(4,'FC','Core recon',NULL,'MX3','Behavior difference','FC issue zzzz','FC','2017-11-28 16:50:25',1,1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `issue` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +70,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-23 14:33:17
+-- Dump completed on 2017-11-30 16:57:01

@@ -6,8 +6,10 @@ package lle.crud.data.util;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
+import lle.crud.service.ActionService;
 import lle.crud.service.IssueService;
 import lle.crud.service.RoleService;
+import lle.crud.service.StatusService;
 import lle.crud.service.TradeHeaderService;
 import lle.crud.service.TradeIssueMapService;
 import lle.crud.service.TradeService;
@@ -40,5 +42,13 @@ public class DataHibernateUtil  {
 	
 	public static RoleService getRoleService() {
 		return context.getBean(RoleService.class);
+	}
+	
+	public static StatusService getStatusService() {
+		return context.getBean(StatusService.class);
+	}
+	
+	public static ActionService getActionService() {
+		return context.getBean(ActionService.class);
 	}
 }

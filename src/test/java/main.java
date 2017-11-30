@@ -14,6 +14,7 @@ import lle.crud.model.TradeHeaderKey;
 import lle.crud.model.TradeIssueMap;
 import lle.crud.model.TradeIssueMapKey;
 import lle.crud.model.User;
+import lle.crud.service.ActionService;
 import lle.crud.service.IssueService;
 import lle.crud.service.TradeService;
 import lle.crud.service.UserService;
@@ -55,9 +56,12 @@ public class main {
 //		User user = uss.getUserByName("LLE");
 //		System.out.println(user.getPwd());
 		
-		TradeService uss = DataHibernateUtil.getTradeService();
-		Trade user = uss.getTradeByNb("12345");
-		System.out.println(user.getIssueList().size());
+		IssueService uss = DataHibernateUtil.getIssueService();
+		ActionService ass = DataHibernateUtil.getActionService();
+		
+		Issue issue = uss.getIssueById(1);
+		System.out.println(issue.getLastActionId());
+		System.out.println(ass.getActionById(issue.getLastActionId()).getAction());
 		
 		/*TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
 		

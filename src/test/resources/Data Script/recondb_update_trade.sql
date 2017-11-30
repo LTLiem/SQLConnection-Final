@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `recondb_update` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `recondb_update`;
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: recondb_update
 -- ------------------------------------------------------
--- Server version	5.6.26-log
+-- Server version	5.7.20-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,20 +34,22 @@ CREATE TABLE `trade` (
   `trn_type` varchar(5) CHARACTER SET utf8 NOT NULL,
   `trn_status` varchar(15) CHARACTER SET utf8 DEFAULT NULL,
   `input_date` datetime NOT NULL,
-  `user` int(11) NOT NULL,
+  `user_created` int(11) NOT NULL,
+  `last_action` int(11) DEFAULT NULL,
+  `last_date` datetime DEFAULT NULL,
+  `last_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`trade_nb`),
-  UNIQUE KEY `trn_fmly_UNIQUE` (`trn_fmly`),
-  UNIQUE KEY `trn_grp_UNIQUE` (`trn_grp`),
-  UNIQUE KEY `trn_type_UNIQUE` (`trn_type`),
   KEY `fk_fmly_idx` (`trn_fmly`),
   KEY `fk_grp_idx` (`trn_grp`),
   KEY `fk_type_idx` (`trn_type`),
-  KEY `fk_trade_user_idx` (`user`),
+  KEY `fk_trade_user_idx` (`user_created`),
   KEY `FK8gdio75dncdfnr27o43uno0n6` (`trn_fmly`,`trn_grp`,`trn_type`),
-  CONSTRAINT `FK5hrkd1f0i3gu38s27pvqlu0ax` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`),
-  CONSTRAINT `FK8gdio75dncdfnr27o43uno0n6` FOREIGN KEY (`trn_fmly`, `trn_grp`, `trn_type`) REFERENCES `trn_hdr` (`trn_fmly`, `trn_grp`, `trn_type`),
+  KEY `fk_action_action_idx` (`last_action`),
+  KEY `fk_lastuser_user_idx` (`last_user`),
   CONSTRAINT `fk_trade_header` FOREIGN KEY (`trn_fmly`, `trn_grp`, `trn_type`) REFERENCES `trn_hdr` (`trn_fmly`, `trn_grp`, `trn_type`),
-  CONSTRAINT `fk_trade_user` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_trade_lastaction` FOREIGN KEY (`last_action`) REFERENCES `action` (`action_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_trade_lastuser_user` FOREIGN KEY (`last_user`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_user` FOREIGN KEY (`user_created`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,7 +59,7 @@ CREATE TABLE `trade` (
 
 LOCK TABLES `trade` WRITE;
 /*!40000 ALTER TABLE `trade` DISABLE KEYS */;
-INSERT INTO `trade` VALUES ('12345','I1','C1','P1','CURR','FXD','FXD','T1','2011-12-18 13:17:17',1);
+INSERT INTO `trade` VALUES ('12312','FUT3','USD','FUT PTF','EQD','FUT','     ','LIVE','2017-11-29 09:33:14',1,NULL,NULL,NULL),('12345','SEC1','EUR','EQD PTF','EQD','OPT','OTC','LIVE','2017-11-29 09:33:13',1,2,'2017-11-29 09:33:13',2),('12347','SEC1','EUR','EQD PTF','EQD','OPT','OTC','LIVE','2017-11-29 09:33:13',1,2,'2017-11-29 09:33:13',2),('12348','SEC2','EUR','EQD PTF','EQD','OPT','OTC','LIVE','2017-11-29 09:33:13',1,2,'2017-11-29 09:33:13',2),('12350','SEC2','EUR','EQD PTF','EQD','OPT','OTC','LIVE','2017-11-29 09:33:13',1,2,'2017-11-29 09:33:13',2),('12351','FUT1','EUR','FUT PTF','EQD','FUT','     ','LIVE','2017-11-29 09:33:13',1,2,'2017-11-29 09:33:13',2),('12352','FUT2','USD','FUT PTF','EQD','FUT','     ','LIVE','2017-11-29 09:33:13',1,2,'2017-11-29 09:33:13',2),('12353','FUT1','EUR','FUT PTF','EQD','FUT','     ','LIVE','2017-11-29 09:33:14',1,2,'2017-11-29 09:33:13',2),('12354','FUT2','USD','FUT PTF','EQD','FUT','     ','LIVE','2017-11-29 09:33:14',1,2,'2017-11-29 09:33:13',2),('12356','FUT3','USD','FUT PTF','EQD','FUT','     ','LIVE','2017-11-29 09:33:14',1,2,'2017-11-29 09:33:13',2),('12357','FUT1','USD','FUT PTF','EQD','FUT','     ','LIVE','2017-11-29 09:33:14',1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `trade` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -68,4 +72,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-23 14:33:17
+-- Dump completed on 2017-11-30 16:57:00

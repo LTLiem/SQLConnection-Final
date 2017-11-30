@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `recondb_update` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `recondb_update`;
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: recondb_update
 -- ------------------------------------------------------
--- Server version	5.6.26-log
+-- Server version	5.7.20-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -38,7 +40,7 @@ CREATE TABLE `trn_hdr` (
 
 LOCK TABLES `trn_hdr` WRITE;
 /*!40000 ALTER TABLE `trn_hdr` DISABLE KEYS */;
-INSERT INTO `trn_hdr` VALUES ('COM','ASIAN','','COM Asian'),('COM','ASIAN','CLR','COM Cleared asian'),('COM','EFS','','COM Exchange Future for Swap'),('COM','FUT','','COM Future'),('COM','FWD','','COM Forward'),('COM','OFUT','LST','COM Option on Future - Listed'),('COM','OFUT','OTC','COM Option on Future - OTC'),('COM','OPT','CMP','COM Compound Option'),('COM','OPT','SMP','COM Simple option'),('COM','OPT','SWAP','COM Swaption'),('COM','SPOT','','COM Spot/Forward'),('COM','SWAP','','COM Swap'),('COM','SWAP','CAPA','COM Capacity'),('COM','SWAP','CLR','COM Cleared swap'),('COM','SWAP','PHYS','COM Physical Forward'),('COM','SWAP','TRS','COM transport'),('CURR','FUT','FUT','Futures'),('CURR','FXD','FXD','Spot-Forward'),('CURR','FXD','SWLEG','Forex-Swap Leg'),('CURR','FXD','XSW','Forex-Swap'),('CURR','OPT','ASN','Asian Option'),('CURR','OPT','BAR','Simple Barrier'),('CURR','OPT','BAR2','Double Barrier'),('CURR','OPT','FLEX','Flexible Deal'),('CURR','OPT','KIKO','Kiko Barrier'),('CURR','OPT','LST','Listed Option'),('CURR','OPT','RBT','Touch rebate'),('CURR','OPT','RBTS','Strip of Touch rebate'),('CURR','OPT','SMP','Simple Option'),('CURR','OPT','SMPS','Strip of Simple Options'),('IRD','ASWP','','Asset swaps'),('IRD','BOND','','Bonds'),('IRD','BOND','CALL','Callable Bonds'),('IRD','BOND','CPCD','CP/CD'),('IRD','BOND','FWD','Bond Forwards'),('IRD','CD','','Call deposits'),('IRD','CF','','Caps/floors'),('IRD','CS','','Currency swaps'),('IRD','FRA','','FRA\'s'),('IRD','IRS','','Interest rate swaps'),('IRD','LFUT','','Long futures'),('IRD','LN_BR','','Loans/Deposits'),('IRD','OPT','ORG','Interest rate future options'),('IRD','OPT','OTC','Bond options'),('IRD','OSWP','','Swaptions'),('IRD','REPO','','Old Bond Buy/Sell Back'),('IRD','REPO','BSK','Basket Repos'),('IRD','REPO','REPO','Bond Repos'),('IRD','SFUT','','Short futures'),('SCF','SCF','SCF','Simple cash flow');
+INSERT INTO `trn_hdr` VALUES ('COM','ASIAN','','COM Asian'),('COM','ASIAN','CLR','COM Cleared asian'),('COM','EFS','','COM Exchange Future for Swap'),('COM','FUT','','COM Future'),('COM','FWD','','COM Forward'),('COM','OFUT','LST','COM Option on Future - Listed'),('COM','OFUT','OTC','COM Option on Future - OTC'),('COM','OPT','CMP','COM Compound Option'),('COM','OPT','SMP','COM Simple option'),('COM','OPT','SWAP','COM Swaption'),('COM','SPOT','','COM Spot/Forward'),('COM','SWAP','','COM Swap'),('COM','SWAP','CAPA','COM Capacity'),('COM','SWAP','CLR','COM Cleared swap'),('COM','SWAP','PHYS','COM Physical Forward'),('COM','SWAP','TRS','COM transport'),('CURR','FUT','FUT','Futures'),('CURR','FXD','FXD','Spot-Forward'),('CURR','FXD','SWLEG','Forex-Swap Leg'),('CURR','FXD','XSW','Forex-Swap'),('CURR','OPT','ASN','Asian Option'),('CURR','OPT','BAR','Simple Barrier'),('CURR','OPT','BAR2','Double Barrier'),('CURR','OPT','FLEX','Flexible Deal'),('CURR','OPT','KIKO','Kiko Barrier'),('CURR','OPT','LST','Listed Option'),('CURR','OPT','RBT','Touch rebate'),('CURR','OPT','RBTS','Strip of Touch rebate'),('CURR','OPT','SMP','Simple Option'),('CURR','OPT','SMPS','Strip of Simple Options'),('EQD','FUT','     ','Future'),('EQD','OPT','OTC','otc'),('IRD','ASWP','','Asset swaps'),('IRD','BOND','','Bonds'),('IRD','BOND','CALL','Callable Bonds'),('IRD','BOND','CPCD','CP/CD'),('IRD','BOND','FWD','Bond Forwards'),('IRD','CD','','Call deposits'),('IRD','CF','','Caps/floors'),('IRD','CS','','Currency swaps'),('IRD','FRA','','FRA\'s'),('IRD','IRS','','Interest rate swaps'),('IRD','LFUT','','Long futures'),('IRD','LN_BR','','Loans/Deposits'),('IRD','OPT','ORG','Interest rate future options'),('IRD','OPT','OTC','Bond options'),('IRD','OSWP','','Swaptions'),('IRD','REPO','','Old Bond Buy/Sell Back'),('IRD','REPO','BSK','Basket Repos'),('IRD','REPO','REPO','Bond Repos'),('IRD','SFUT','','Short futures'),('SCF','SCF','SCF','Simple cash flow');
 /*!40000 ALTER TABLE `trn_hdr` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-23 14:33:16
+-- Dump completed on 2017-11-30 16:57:00
