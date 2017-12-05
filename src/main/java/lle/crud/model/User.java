@@ -1,6 +1,8 @@
 package lle.crud.model;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +22,7 @@ public class User implements Serializable {
 	
 	@Id
 	@Column(name = "user_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	
 	@Column(name = "name")
@@ -30,7 +32,7 @@ public class User implements Serializable {
 	private String pwd;
 	
 	@Column(name = "actived_date")
-	private String activedDate;
+	private Date activedDate;
 	
 	@Column(name = "status")
 	private String status;
@@ -52,7 +54,7 @@ public class User implements Serializable {
 		super();
 	}
 
-	public User(int userId, String name, String pwd, String activedDate, String status, Role role) {
+	public User(int userId, String name, String pwd, Date activedDate, String status, Role role) {
 		super();
 		this.userId = userId;
 		this.name = name;
@@ -86,11 +88,11 @@ public class User implements Serializable {
 		this.pwd = pwd;
 	}
 
-	public String getActivedDate() {
+	public Date getActivedDate() {
 		return activedDate;
 	}
 
-	public void setActivedDate(String activedDate) {
+	public void setActivedDate(Date activedDate) {
 		this.activedDate = activedDate;
 	}
 

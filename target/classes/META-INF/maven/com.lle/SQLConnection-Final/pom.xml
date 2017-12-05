@@ -10,7 +10,7 @@ Liem Le</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.slf4j.version>1.7.25</org.slf4j.version>
+		<org.slf4j.version>2.10.0</org.slf4j.version>
 		<org.hibernate.version>5.2.10.Final</org.hibernate.version>
 		<org.hibernate-validator.version>6.0.2.Final</org.hibernate-validator.version>
 		<org.springframework.version>4.3.11.RELEASE</org.springframework.version>
@@ -26,25 +26,13 @@ Liem Le</description>
 
 
 		<!-- slf4j -->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${org.slf4j.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
 			<version>${org.slf4j.version}</version>
 		</dependency>
 		<!-- slf4j -->
-
 
 		<!-- Hibernate resources -->
 		<dependency>

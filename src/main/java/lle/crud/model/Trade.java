@@ -27,7 +27,7 @@ public class Trade implements Serializable {
 
 	@Id
 	@Column(name = "trade_nb")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String tradeNb;
 
 	@Column(name = "instrument")
