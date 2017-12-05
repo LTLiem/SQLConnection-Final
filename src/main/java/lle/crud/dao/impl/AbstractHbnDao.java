@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ReflectionUtils;
 
@@ -22,6 +23,14 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 	
 	protected Session getSession() {
 		return sessionFactory.getCurrentSession();
+	}
+	
+	/** @author LuanNgu
+	 * {@code optimize insertion of large amount of data}
+	 * @return
+	 */
+	protected StatelessSession  getStatelessSession() {
+		return sessionFactory.openStatelessSession();
 	}
 		
 	@SuppressWarnings("unchecked")
@@ -50,7 +59,7 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 		 } catch (Exception e) {
 			 e.getCause();
 		 }
-		 this.getSession().save(t);
+		 this.getSession().save(t); // LuanNgu updated for optimize insertion
 	 }
 		
 	 public void delete(T t) {

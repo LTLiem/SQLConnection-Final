@@ -1,5 +1,7 @@
 package lle.crud.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,11 @@ public class TradeIssueMapServiceImpl implements TradeIssueMapService {
 
 	public void updateTradeIssueMap(TradeIssueMap tradeIssue) {
 		tradeIssueMapDao.update(tradeIssue);
+	}
+
+	public void createTradeIssueMap(List<TradeIssueMap> list) {
+		// TODO Auto-generated method stub
+		tradeIssueMapDao.create(list);
 	}
 	
 

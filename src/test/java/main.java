@@ -56,20 +56,22 @@ public class main {
 //		User user = uss.getUserByName("LLE");
 //		System.out.println(user.getPwd());
 		
-		IssueService uss = DataHibernateUtil.getIssueService();
+		/*IssueService uss = DataHibernateUtil.getIssueService();
 		ActionService ass = DataHibernateUtil.getActionService();
 		
 		Issue issue = uss.getIssueById(1);
 		System.out.println(issue.getLastActionId());
-		System.out.println(ass.getActionById(issue.getLastActionId()).getAction());
+		System.out.println(ass.getActionById(issue.getLastActionId()).getAction());*/
 		
-		/*TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
+		TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
 		
 		TradeIssueMapKey key = new TradeIssueMapKey("12345", 3);
 		Date date = new Date();
 		
 		TradeIssueMap tradeIssueMap = new TradeIssueMap(key, date);
-		tradeIssueMapService.createTradeIssueMap(tradeIssueMap);*/
+		tradeIssueMapService.createTradeIssueMap(tradeIssueMap);
+		
+		
 
 	}
 
