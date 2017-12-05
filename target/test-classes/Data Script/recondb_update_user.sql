@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `recondb_update` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `recondb_update`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: recondb_update
@@ -27,7 +25,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
-  `pwd` varchar(50) NOT NULL,
+  `pwd` varchar(100) NOT NULL,
   `actived_date` datetime NOT NULL,
   `status` varchar(45) NOT NULL,
   `role` int(11) NOT NULL,
@@ -35,7 +33,7 @@ CREATE TABLE `user` (
   KEY `fk_user_role_idx` (`role`),
   CONSTRAINT `FKl5alypubd40lwejc45vl35wjb` FOREIGN KEY (`role`) REFERENCES `role` (`role_id`),
   CONSTRAINT `fk_user_role` FOREIGN KEY (`role`) REFERENCES `role` (`role_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +42,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'LLE','1234','2011-12-18 13:17:17','ACTIVE',1),(2,'BA1','1234','2011-12-18 13:17:17','ACTIVE',2);
+INSERT INTO `user` VALUES (1,'LLE','1234','2011-12-18 13:17:17','ACTIVE',1),(2,'BA1','1234','2011-12-18 13:17:17','ACTIVE',2),(3,'LLE','$2a$10$BsSbBYwQNMUDkoIhIJR7v.MrKJbF8jhFYIWew9FFuzBFVFgV8XATK','2017-12-05 14:50:36','ACTIVE',1),(4,'PIKACHU','$2a$10$OIEN8PrBtxghefEZhJli2.wqEa.M4ekqtWK9.hJT.EbEwWDQSdJ6.','2017-12-05 14:56:05','ACTIVE',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-30 16:57:01
+-- Dump completed on 2017-12-05 15:15:23

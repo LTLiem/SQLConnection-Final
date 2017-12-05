@@ -16,7 +16,7 @@ public class Status implements Serializable {
 
 	@Id
 	@Column(name = "status_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int statusId;
 	
 	@Column(name = "status")

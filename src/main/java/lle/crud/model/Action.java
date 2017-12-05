@@ -17,7 +17,7 @@ public class Action implements Serializable {
 
 	@Id
 	@Column(name = "action_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int actionId;
 
 	@Column(name = "action")
