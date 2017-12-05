@@ -92,6 +92,26 @@ public class Trade implements Serializable {
 		this.lastDate = lastDate;
 		this.lastUserId = lastUserId;
 	}
+	
+	/**@author LuanNgu
+	 * @param t
+	 * {@code copy creation}
+	 */
+	public Trade(Trade t)
+	{
+		this.tradeNb = t.tradeNb;
+		this.instrument = t.instrument;
+		this.currency = t.currency;
+		this.portfolio = t.portfolio;
+		this.tradeHeader = t.tradeHeader;
+		this.trnStatus = t.trnStatus;
+		this.inputDate = t.inputDate;
+		this.userCreatedId = t.userCreatedId;
+		this.lastActionId = t.lastActionId;
+		this.lastDate = t.lastDate;
+		this.lastUserId = t.lastUserId;
+		this.issueList = new ArrayList<Issue>(t.getIssueList());
+	}
 
 	public String getTradeNb() {
 		return tradeNb;
