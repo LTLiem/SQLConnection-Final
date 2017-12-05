@@ -58,10 +58,13 @@ public class main {
 		
 		IssueService uss = DataHibernateUtil.getIssueService();
 		ActionService ass = DataHibernateUtil.getActionService();
+		TradeIssueMapService tim = DataHibernateUtil.getTradeIssueMapService();
 		
 		Issue issue = uss.getIssueById(1);
 		System.out.println(issue.getLastActionId());
 		System.out.println(ass.getActionById(issue.getLastActionId()).getAction());
+		
+		tim.createTradeIssueMap(new TradeIssueMap(new TradeIssueMapKey("12312",1), new Date()));
 		
 		/*TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
 		
