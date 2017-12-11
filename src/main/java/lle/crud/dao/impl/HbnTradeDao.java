@@ -3,9 +3,7 @@ package lle.crud.dao.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 import java.util.Set;
-
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 

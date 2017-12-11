@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import lle.crud.dao.TradeIssueMapDao;
 import lle.crud.model.TradeIssueMap;
+import lle.crud.model.TradeIssueMapKey;
 import lle.crud.service.TradeIssueMapService;
 
 @Service("TradeIssueMapService")
@@ -33,6 +34,10 @@ public class TradeIssueMapServiceImpl implements TradeIssueMapService {
 	public void createTradeIssueMap(List<TradeIssueMap> list) {
 		// TODO Auto-generated method stub
 		tradeIssueMapDao.create(list);
+	}
+
+	public TradeIssueMap getByTradeIssueKey(TradeIssueMapKey tradeIssueMapKey) {
+		return tradeIssueMapDao.getByTradeIssueKey(tradeIssueMapKey);
 	}
 	
 
