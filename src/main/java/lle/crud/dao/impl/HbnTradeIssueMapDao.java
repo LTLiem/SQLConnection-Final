@@ -17,27 +17,25 @@ public class HbnTradeIssueMapDao extends AbstractHbnDao<TradeIssueMap> implement
 	@Autowired
 	SessionFactory sessionFactory;
 	static int MAX_LIMIT_BATCH = 50;
-	
-	/**@author LuanNgu
+
+	/**
+	 * @author LuanNgu
 	 * @param list
 	 */
 	public void create(List<TradeIssueMap> list) {
 		// TODO Auto-generated method stub
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
 		int size = list.size();
-		for (int i =0; i< size; i++)
-		{
-			session.save(list.get(i));
-			if (i % MAX_LIMIT_BATCH == 0)
-			{
-				//flush a batch of inserts and release memory:
-			      session.flush();
-			      session.clear();
-			}
-		}
-		tx.commit();
-		session.close();
+		for (int i = 0; i < size; i++) {
+	
+			createOrUpdate(list.get(i));
 		
+			if (i % MAX_LIMIT_BATCH == 0) {
+				// flush a batch of inserts and release memory:
+				getSession().flush();
+				getSession().clear();
+			}
+
+		}
+
 	}
 }

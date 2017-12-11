@@ -47,7 +47,7 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 		return this.getDomainClass().getName();
 	}
 	
-	 public void create(T t) {
+	public void create(T t) {
 		 Method method = ReflectionUtils.findMethod(
 				 this.getDomainClass(), "setTimeCreated",
 				 new Class[] { Date.class });
@@ -59,7 +59,26 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 		 } catch (Exception e) {
 			 e.getCause();
 		 }
-		 this.getSession().save(t); // LuanNgu updated for optimize insertion
+		 this.getSession().save(t);
+	 }
+	
+	/**@author LuanNgu
+	 * @since 08-Dec-2017
+	 * @param t
+	 */
+	public void createOrUpdate(T t) {
+		 Method method = ReflectionUtils.findMethod(
+				 this.getDomainClass(), "setTimeCreated",
+				 new Class[] { Date.class });
+		 method = ReflectionUtils.findMethod(
+				 this.getDomainClass(), "setTimeUpdated",
+				 new Class[] { Date.class });
+		 try {
+			 method.invoke(t, new Date());
+		 } catch (Exception e) {
+			 e.getCause();
+		 }
+		 this.getSession().saveOrUpdate(t);; 
 	 }
 		
 	 public void delete(T t) {

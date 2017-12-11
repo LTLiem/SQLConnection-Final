@@ -29,9 +29,9 @@ public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
 		for (Entry<String, String> entry : set) {
 			String con = "";
 			if (i++ > 0)
-				con = String.format("AND %s = :%s", entry.getKey(), entry.getKey());
+				con = String.format(" AND %s = :%s", entry.getKey().toLowerCase(), entry.getKey());
 			else
-				con = String.format(" %s = :%s", entry.getKey(), entry.getKey());
+				con = String.format(" %s = :%s", entry.getKey().toLowerCase(), entry.getKey());
 			sb.append(con);
 		}
 		Query query = getSession().createQuery("from Trade where " + sb.toString());
