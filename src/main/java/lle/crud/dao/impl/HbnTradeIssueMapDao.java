@@ -27,7 +27,8 @@ public class HbnTradeIssueMapDao extends AbstractHbnDao<TradeIssueMap> implement
 		int size = list.size();
 		for (int i = 0; i < size; i++) {
 	
-			createOrUpdate(list.get(i));
+			if (!exists(list.get(i).getTradeIssueMapKey()))
+				create(list.get(i));
 		
 			if (i % MAX_LIMIT_BATCH == 0) {
 				// flush a batch of inserts and release memory:

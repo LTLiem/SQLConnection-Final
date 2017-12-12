@@ -32,6 +32,12 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 	protected StatelessSession  getStatelessSession() {
 		return sessionFactory.openStatelessSession();
 	}
+	
+	protected Session openSession()
+	{
+		return sessionFactory.openSession();
+		
+	}
 		
 	@SuppressWarnings("unchecked")
 	private Class<T> getDomainClass() {
@@ -78,7 +84,7 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 		 } catch (Exception e) {
 			 e.getCause();
 		 }
-		 this.getSession().saveOrUpdate(t);; 
+		 this.getSession().saveOrUpdate(t); 
 	 }
 		
 	 public void delete(T t) {

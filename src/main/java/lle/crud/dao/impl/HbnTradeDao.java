@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.Set;
 
+import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
@@ -24,6 +25,7 @@ public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
 		List<Trade> trades = null;
 		Set<Entry<String, String>> set = criteria.entrySet();
 		StringBuilder sb = new StringBuilder();
+		Session session = openSession();
 		int i = 0;
 
 		for (Entry<String, String> entry : set) {
@@ -34,13 +36,14 @@ public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
 				con = String.format(" %s = :%s", entry.getKey().toLowerCase(), entry.getKey());
 			sb.append(con);
 		}
-		Query query = getSession().createQuery("from Trade where " + sb.toString());
+		Query query = session.createQuery("from Trade where " + sb.toString());
 
 		for (Entry<String, String> entry : set) {
 			query.setParameter(entry.getKey(), entry.getValue());
 		}
 
 		trades = query.getResultList();
+		session.close();
 		return trades;
 
 	}
