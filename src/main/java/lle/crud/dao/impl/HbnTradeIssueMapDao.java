@@ -1,21 +1,16 @@
 package lle.crud.dao.impl;
 
 import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lle.crud.dao.TradeIssueMapDao;
+import lle.crud.model.TradeHeader;
 import lle.crud.model.TradeIssueMap;
+import lle.crud.model.TradeIssueMapKey;
 
 @Repository
 public class HbnTradeIssueMapDao extends AbstractHbnDao<TradeIssueMap> implements TradeIssueMapDao {
-
-	@Autowired
-	SessionFactory sessionFactory;
+	
 	static int MAX_LIMIT_BATCH = 50;
 
 	/**
@@ -38,5 +33,18 @@ public class HbnTradeIssueMapDao extends AbstractHbnDao<TradeIssueMap> implement
 
 		}
 
+	}
+
+	public TradeIssueMap getByTradeIssueKey(TradeIssueMapKey tradeIssueMapKey) {
+		TradeIssueMap tradeIssueMap = null;
+		
+		tradeIssueMap = (TradeIssueMap)getSession()
+				.createQuery("from TradeIssueMap where tradeIssueMapKey.tradeNb = :tradeNb "
+						+ "and tradeIssueMapKey.issueId = :issueId")
+				.setParameter("tradeNb", tradeIssueMapKey.getTradeNb())
+				.setParameter("issueId", tradeIssueMapKey.getIssueId())				
+				.uniqueResult();
+
+		return tradeIssueMap;
 	}
 }

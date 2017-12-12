@@ -68,13 +68,17 @@ public class main {
 		TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
 
 		
-		TradeIssueMapKey key = new TradeIssueMapKey("12345", 3);
-		Date date = new Date();
+		TradeIssueMapKey key = new TradeIssueMapKey("12345", 100);
+		//Date date = new Date();
 		
-		TradeIssueMap tradeIssueMap = new TradeIssueMap(key, date);
-		tradeIssueMapService.createTradeIssueMap(tradeIssueMap);
+		//TradeIssueMap tradeIssueMap = new TradeIssueMap(key, date);
+		TradeIssueMap tm = tradeIssueMapService.getByTradeIssueKey(key);
 		
-		
+		if(tm != null) {
+			System.out.println(tm.getInputDate());
+		} else {
+			System.out.println("Connection is not exists");
+		}	
 
 	}
 
