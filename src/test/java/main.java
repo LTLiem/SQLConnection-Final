@@ -2,6 +2,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -65,20 +66,24 @@ public class main {
 		System.out.println(ass.getActionById(issue.getLastActionId()).getAction());*/
 		
 
-		TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
-
+//		TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
+//
+//		
+//		TradeIssueMapKey key = new TradeIssueMapKey("12345", 100);
+//		//Date date = new Date();
+//		
+//		//TradeIssueMap tradeIssueMap = new TradeIssueMap(key, date);
+//		TradeIssueMap tm = tradeIssueMapService.getByTradeIssueKey(key);
+//		
+//		if(tm != null) {
+//			System.out.println(tm.getInputDate());
+//		} else {
+//			System.out.println("Connection is not exists");
+//		}	
 		
-		TradeIssueMapKey key = new TradeIssueMapKey("12345", 100);
-		//Date date = new Date();
-		
-		//TradeIssueMap tradeIssueMap = new TradeIssueMap(key, date);
-		TradeIssueMap tm = tradeIssueMapService.getByTradeIssueKey(key);
-		
-		if(tm != null) {
-			System.out.println(tm.getInputDate());
-		} else {
-			System.out.println("Connection is not exists");
-		}	
+		TradeService tradeService = DataHibernateUtil.getTradeService();
+		List<Trade> trades = tradeService.getTradeByCriteria(null);
+		System.out.println(String.join(",", trades.stream().map(t->t.getTradeNb()).collect(Collectors.toList())));
 
 	}
 

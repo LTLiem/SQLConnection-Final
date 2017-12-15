@@ -5,7 +5,12 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.StatelessSession;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +29,7 @@ public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
 		List<Trade> trades = null;
 		Set<Entry<String, String>> set = criteria.entrySet();
 		StringBuilder sb = new StringBuilder();
-		Session session = openSession();
+		Session session = getSession();
 		int i = 0;
 
 		for (Entry<String, String> entry : set) {
@@ -35,14 +40,13 @@ public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
 				con = String.format(" %s = :%s", entry.getKey().toLowerCase(), entry.getKey());
 			sb.append(con);
 		}
+		
 		Query query = session.createQuery("from Trade where " + sb.toString());
-
 		for (Entry<String, String> entry : set) {
 			query.setParameter(entry.getKey(), entry.getValue());
 		}
 
 		trades = query.getResultList();
-		session.close();
 		return trades;
 
 	}
