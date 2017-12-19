@@ -1,5 +1,6 @@
 package lle.crud.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import lle.crud.model.TradeIssueMap;
@@ -10,4 +11,6 @@ public interface TradeIssueMapDao extends Dao<TradeIssueMap> {
 	public void create(List<TradeIssueMap> list);
 	
 	public TradeIssueMap getByTradeIssueKey(TradeIssueMapKey tradeIssueMapKey);
+	
+	public void insertTradeIssue(HashMap<String,String> groups);
 }

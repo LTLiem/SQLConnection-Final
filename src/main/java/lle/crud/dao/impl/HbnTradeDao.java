@@ -1,6 +1,9 @@
 package lle.crud.dao.impl;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -27,10 +30,11 @@ public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
 	 */
 	public List<Trade> getTradeByCriteria(HashMap<String, String> criteria) {
 		List<Trade> trades = null;
-		Set<Entry<String, String>> set = criteria.entrySet();
+		Set<Entry<String,String>> set = criteria.entrySet();
 		StringBuilder sb = new StringBuilder();
 		Session session = getSession();
 		int i = 0;
+		
 
 		for (Entry<String, String> entry : set) {
 			String con = "";
@@ -45,6 +49,8 @@ public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
 		for (Entry<String, String> entry : set) {
 			query.setParameter(entry.getKey(), entry.getValue());
 		}
+		
+		
 
 		trades = query.getResultList();
 		return trades;

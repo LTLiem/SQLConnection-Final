@@ -1,5 +1,6 @@
 package lle.crud.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import lle.crud.model.TradeIssueMap;
@@ -19,5 +20,11 @@ public interface TradeIssueMapService {
 	public void updateTradeIssueMap(TradeIssueMap tradeIssue);
 	
 	public TradeIssueMap getByTradeIssueKey(TradeIssueMapKey tradeIssueMapKey);
+	
+	/** @author LuanNgu
+	 * @param groups properties of trade
+	 * Insert by criteria
+	 */
+	public void insertTradeIssue(HashMap<String,String> groups);
 
 }

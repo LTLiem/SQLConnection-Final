@@ -1,10 +1,15 @@
 package lle.crud.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import org.hibernate.StatelessSession;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import lle.crud.dao.TradeIssueMapDao;
-import lle.crud.model.TradeHeader;
 import lle.crud.model.TradeIssueMap;
 import lle.crud.model.TradeIssueMapKey;
 
@@ -46,5 +51,36 @@ public class HbnTradeIssueMapDao extends AbstractHbnDao<TradeIssueMap> implement
 				.uniqueResult();
 
 		return tradeIssueMap;
+	}
+
+	/** @author LuanNgu
+	 * @see lle.crud.dao.TradeIssueMapDao#insertTradeIssue(java.util.HashMap)
+	 */
+	@Override
+	public void insertTradeIssue(HashMap<String, String> groups) {
+		// TODO Auto-generated method stub
+		/*
+		 * INSERT INTO trade_issue (trade_nb, issue_id, input_date) (SELECT trade_nb, :issue_val as issue_id, now() FROM trade WHERE %%);
+		 */
+		
+		StatelessSession session = getStatelessSession();
+		String query_string = "INSERT INTO trade_issue (trade_nb, issue_id, input_date) (SELECT trade_nb, :issue_val as issue_id, now() FROM trade WHERE #crit#)";
+		Set<Entry<String,String>> set = groups.entrySet();
+		StringBuilder sb = new StringBuilder();
+		int i=0;
+		for (Entry<String, String> entry : set) {
+			String con = "";
+			if (i++ > 0)
+				con = String.format(" AND %s = :%s", entry.getKey().toLowerCase(), entry.getKey());
+			else
+				con = String.format(" %s = :%s", entry.getKey().toLowerCase(), entry.getKey());
+			sb.append(con);
+		}
+		query_string.replaceAll("#crit#", sb.toString());
+		Query query = session.createSQLQuery(query_string);
+		query.setParameter("issue_val", groups.get("issue"));
+		
+		query.executeUpdate();
+		
 	}
 }

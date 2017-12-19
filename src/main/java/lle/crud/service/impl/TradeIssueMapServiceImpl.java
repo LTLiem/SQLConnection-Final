@@ -1,5 +1,6 @@
 package lle.crud.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -38,6 +39,16 @@ public class TradeIssueMapServiceImpl implements TradeIssueMapService {
 
 	public TradeIssueMap getByTradeIssueKey(TradeIssueMapKey tradeIssueMapKey) {
 		return tradeIssueMapDao.getByTradeIssueKey(tradeIssueMapKey);
+	}
+
+	/** (non-Javadoc)
+	 * @author LuanNgu
+	 * @see lle.crud.service.TradeIssueMapService#insertTradeIssue(java.util.HashMap)
+	 */
+	@Override
+	public void insertTradeIssue(HashMap<String, String> groups) {
+		// TODO Auto-generated method stub
+		tradeIssueMapDao.insertTradeIssue(groups);
 	}
 	
 
