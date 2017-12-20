@@ -13,4 +13,7 @@ public interface TradeIssueMapDao extends Dao<TradeIssueMap> {
 	public TradeIssueMap getByTradeIssueKey(TradeIssueMapKey tradeIssueMapKey);
 	
 	public void insertTradeIssue(HashMap<String,String> groups);
+	
+	public List<TradeIssueMap> getByCreatedUserId(Integer userId);
+	
 }

@@ -46,9 +46,13 @@ public class TradeIssueMapServiceImpl implements TradeIssueMapService {
 	 * @see lle.crud.service.TradeIssueMapService#insertTradeIssue(java.util.HashMap)
 	 */
 	@Override
-	public void insertTradeIssue(HashMap<String, String> groups) {
-		// TODO Auto-generated method stub
+	public void insertTradeIssue(HashMap<String, String> groups) {		
 		tradeIssueMapDao.insertTradeIssue(groups);
+	}
+
+	@Override
+	public List<TradeIssueMap> getByCreatedUserId(Integer userId) {
+		return tradeIssueMapDao.getByCreatedUserId(userId);
 	}
 	
 

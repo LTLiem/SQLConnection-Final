@@ -21,6 +21,8 @@ public interface TradeIssueMapService {
 	
 	public TradeIssueMap getByTradeIssueKey(TradeIssueMapKey tradeIssueMapKey);
 	
+	public List<TradeIssueMap> getByCreatedUserId(Integer userId); 
+	
 	/** @author LuanNgu
 	 * @param groups properties of trade
 	 * Insert by criteria

@@ -9,25 +9,29 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="trade_issue")
+@Table(name = "trade_issue")
 public class TradeIssueMap implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
 	private TradeIssueMapKey tradeIssueMapKey;
-	
-	@Column(name="input_date")
+
+	@Column(name = "input_date")
 	private Date inputDate;
+
+	@Column(name = "user_created")
+	private Integer userCreatedId;
 
 	public TradeIssueMap() {
 		super();
 	}
 
-	public TradeIssueMap(TradeIssueMapKey tradeIssueMapKey, Date inputDate) {
+	public TradeIssueMap(TradeIssueMapKey tradeIssueMapKey, Date inputDate, Integer userCreatedId) {
 		super();
 		this.tradeIssueMapKey = tradeIssueMapKey;
 		this.inputDate = inputDate;
+		this.userCreatedId = userCreatedId;
 	}
 
 	public TradeIssueMapKey getTradeIssueMapKey() {
@@ -45,5 +49,13 @@ public class TradeIssueMap implements Serializable {
 	public void setInputDate(Date inputDate) {
 		this.inputDate = inputDate;
 	}
-	
+
+	public Integer getUserCreatedId() {
+		return userCreatedId;
+	}
+
+	public void setUserCreatedId(Integer userCreatedId) {
+		this.userCreatedId = userCreatedId;
+	}
+
 }
