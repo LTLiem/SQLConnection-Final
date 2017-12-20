@@ -26,64 +26,31 @@ import lle.crud.service.TradeIssueMapService;
 public class main {
 
 	public static void main(String[] args) {
-		//ApplicationContext context = new FileSystemXmlApplicationContext("classpath:applicationContext.xml");
 		
-		//System.out.println(context.getBeanDefinitionNames().getClass());
-		//Object obj = context.getBean("issueService");
-		//IssueService issueService = context.getBean(IssueService.class);
-		//TradeService tradeService = context.getBean(TradeService.class);
-		//TradeHeaderService tradeHeaderService = context.getBean(TradeHeaderService.class);
+		TradeIssueMapService service = DataHibernateUtil.getTradeIssueMapService();
 		
-		//System.out.println(tradeService.getClass());
-		//System.out.println(issueService.getClass());
-		//System.out.println(tradeHeaderService.getClass());
+		List<TradeIssueMap> result = service.getByCreatedUserId(2);
 		
-		//PASSED
-		//TradeHeaderKey key = new TradeHeaderKey("CURR","FXD","FXD");
-		//TradeHeader tradeHeader = tradeHeaderService.getTradeHeaderByFGT(key);
-		//System.out.println(tradeHeader.getDescription());
-		//System.out.println(tradeHeader.getTradeList().get(0).getTradeNb());
-		
-		//List<TradeHeader> headers = tradeHeaderService.getAllTradeHeader();
-		//System.out.println(headers.size());
-		
-		//List<Trade> trades = tradeService.getAllTrade();
-		//System.out.println(trades.get(0).getTradeHeader().getDescription());
-		
-		//Issue issue = issueService.getIssueById(1);
-		//System.out.println(issue.getTradeList().get(0).getTradeNb());
-		
-//		UserService uss = DataHibernateUtil.getUserService();
-//		User user = uss.getUserByName("LLE");
-//		System.out.println(user.getPwd());
-		
-		/*IssueService uss = DataHibernateUtil.getIssueService();
-		ActionService ass = DataHibernateUtil.getActionService();
-		TradeIssueMapService tim = DataHibernateUtil.getTradeIssueMapService();
-		
-		Issue issue = uss.getIssueById(1);
-		System.out.println(issue.getLastActionId());
-		System.out.println(ass.getActionById(issue.getLastActionId()).getAction());*/
-		
+		System.out.println(result.size());
 
-//		TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
-//
-//		
-//		TradeIssueMapKey key = new TradeIssueMapKey("12345", 100);
-//		//Date date = new Date();
-//		
-//		//TradeIssueMap tradeIssueMap = new TradeIssueMap(key, date);
-//		TradeIssueMap tm = tradeIssueMapService.getByTradeIssueKey(key);
-//		
-//		if(tm != null) {
-//			System.out.println(tm.getInputDate());
-//		} else {
-//			System.out.println("Connection is not exists");
-//		}	
+/*		TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
+
 		
-		TradeService tradeService = DataHibernateUtil.getTradeService();
+		TradeIssueMapKey key = new TradeIssueMapKey("12345", 1);
+		//Date date = new Date();
+		
+		//TradeIssueMap tradeIssueMap = new TradeIssueMap(key, date);
+		TradeIssueMap tm = tradeIssueMapService.getByTradeIssueKey(key);
+		
+		if(tm != null) {
+			System.out.println(tm.getInputDate());
+		} else {
+			System.out.println("Connection is not exists");
+		}	*/
+		
+		/*TradeService tradeService = DataHibernateUtil.getTradeService();
 		List<Trade> trades = tradeService.getTradeByCriteria(null);
-		System.out.println(String.join(",", trades.stream().map(t->t.getTradeNb()).collect(Collectors.toList())));
+		System.out.println(String.join(",", trades.stream().map(t->t.getTradeNb()).collect(Collectors.toList())));*/
 
 	}
 
