@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.hibernate.StatelessSession;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
@@ -64,8 +65,13 @@ public class HbnTradeIssueMapDao extends AbstractHbnDao<TradeIssueMap> implement
 		 */
 		
 		StatelessSession session = getStatelessSession();
-		String query_string = "INSERT INTO trade_issue (trade_nb, issue_id, input_date) (SELECT trade_nb, :issue_val as issue_id, now() FROM trade WHERE #crit#)";
-		Set<Entry<String,String>> set = groups.entrySet();
+		Transaction tx = null;
+		String query_string = "INSERT INTO trade_issue (trade_nb, issue_id, input_date) "
+				+ "(SELECT trade_nb, :issue_val as issue_id, now() FROM trade WHERE #crit#) "
+				+ "ON DUPLICATE KEY UPDATE trade_nb=VALUES(trade_nb), issue_id=VALUES(issue_id)";
+		HashMap<String, String> grp = new HashMap<>(groups);
+		grp.remove("issue");
+		Set<Entry<String,String>> set = grp.entrySet();
 		StringBuilder sb = new StringBuilder();
 		int i=0;
 		for (Entry<String, String> entry : set) {
@@ -76,11 +82,28 @@ public class HbnTradeIssueMapDao extends AbstractHbnDao<TradeIssueMap> implement
 				con = String.format(" %s = :%s", entry.getKey().toLowerCase(), entry.getKey());
 			sb.append(con);
 		}
-		query_string.replaceAll("#crit#", sb.toString());
+		query_string = query_string.replaceAll("#crit#", sb.toString());
 		Query query = session.createSQLQuery(query_string);
+		
+		for (Entry<String, String> entry : set) {
+			query.setParameter(entry.getKey(), entry.getValue());
+		}
+		
 		query.setParameter("issue_val", groups.get("issue"));
 		
-		query.executeUpdate();
+		try {
+			tx=session.beginTransaction();
+			query.executeUpdate();
+			tx.commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			tx.rollback();
+		}finally
+		{
+			session.close();
+		}
+		
 		
 	}
 }
