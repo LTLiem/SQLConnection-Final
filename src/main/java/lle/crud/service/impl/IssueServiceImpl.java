@@ -37,4 +37,8 @@ public class IssueServiceImpl implements IssueService {
 		return issuesDao.get(id);
 	}
 
+	public List<Issue> getIssueByCreatedUserId(Integer userId) {
+		return issuesDao.getIssueByCreatedUserId(userId);
+	}
+
 }

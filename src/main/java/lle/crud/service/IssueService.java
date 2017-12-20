@@ -15,4 +15,6 @@ public interface IssueService {
 	
 	public Issue getIssueById(int id);
 	
+	public List<Issue> getIssueByCreatedUserId(Integer userId);
+	
 }
