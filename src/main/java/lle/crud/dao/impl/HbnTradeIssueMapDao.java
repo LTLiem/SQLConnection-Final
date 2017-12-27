@@ -60,15 +60,15 @@ public class HbnTradeIssueMapDao extends AbstractHbnDao<TradeIssueMap> implement
 	 */
 	public void insertTradeIssue(HashMap<String, String> groups) {
 		/*
-		 * INSERT INTO trade_issue (trade_nb, issue_id, input_date) (SELECT trade_nb,
+		 * INSERT INTO trade_issue (trade_nb, issue_id, input_date, user_created) (SELECT trade_nb,
 		 * :issue_val as issue_id, now() FROM trade WHERE %%);
 		 * Using for batches insertion (Form excel file)
 		 */
 
 		StatelessSession session = getStatelessSession();
 		Transaction tx = null;
-		String query_string = "INSERT INTO trade_issue (trade_nb, issue_id, input_date) "
-				+ "(SELECT trade_nb, :issue_val as issue_id, now() FROM trade WHERE #crit#) "
+		String query_string = "INSERT INTO trade_issue (trade_nb, issue_id, input_date, user_created) "
+				+ "(SELECT trade_nb, :issue_val as issue_id, now(), :user_created FROM trade WHERE #crit#) "
 				+ "ON DUPLICATE KEY UPDATE trade_nb=VALUES(trade_nb), issue_id=VALUES(issue_id)";
 		HashMap<String, String> grp = new HashMap<>(groups);
 		grp.remove("issue");
@@ -91,6 +91,7 @@ public class HbnTradeIssueMapDao extends AbstractHbnDao<TradeIssueMap> implement
 		}
 
 		query.setParameter("issue_val", groups.get("issue"));
+		query.setParameter("user_created", 1);
 
 		try {
 			tx = session.beginTransaction();
