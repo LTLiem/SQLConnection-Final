@@ -37,6 +37,10 @@ public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
 			sb.append(con);
 		}
 		
+
+		if ("".equals(sb.toString().trim()))
+			return null;
+		
 		@SuppressWarnings("rawtypes")
 		Query query = session.createQuery("from Trade where " + sb.toString());
 		for (Entry<String, String> entry : set) {
