@@ -1,6 +1,6 @@
 package lle.crud.dao.impl;
 
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import lle.crud.dao.TradeDao;
 import lle.crud.model.Trade;
+import lle.crud.model.User;
 
 @Repository
 public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
@@ -22,11 +23,10 @@ public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
 	@SuppressWarnings("unchecked")
 	public List<Trade> getTradeByCriteria(HashMap<String, String> criteria) {
 		List<Trade> trades = null;
-		Set<Entry<String,String>> set = criteria.entrySet();
+		Set<Entry<String, String>> set = criteria.entrySet();
 		StringBuilder sb = new StringBuilder();
 		Session session = getSession();
 		int i = 0;
-		
 
 		for (Entry<String, String> entry : set) {
 			String con = "";
@@ -36,21 +36,27 @@ public class HbnTradeDao extends AbstractHbnDao<Trade> implements TradeDao {
 				con = String.format(" %s = :%s", entry.getKey().toLowerCase(), entry.getKey());
 			sb.append(con);
 		}
-		
 
 		if ("".equals(sb.toString().trim()))
 			return null;
-		
+
 		@SuppressWarnings("rawtypes")
 		Query query = session.createQuery("from Trade where " + sb.toString());
 		for (Entry<String, String> entry : set) {
 			query.setParameter(entry.getKey(), entry.getValue());
 		}
-		
-		
 
 		trades = query.getResultList();
 		return trades;
 
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Trade> getLatestTrades(Integer limit) {
+		List<Trade> listTrade = new ArrayList<Trade>();
+
+		listTrade = getSession().createQuery("from Trade order by lastDate desc").setMaxResults(limit).list();
+		
+		return listTrade;
 	}
 }

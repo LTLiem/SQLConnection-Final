@@ -27,11 +27,11 @@ public class main {
 
 	public static void main(String[] args) {
 		
-		TradeIssueMapService service = DataHibernateUtil.getTradeIssueMapService();
+	/*	TradeIssueMapService service = DataHibernateUtil.getTradeIssueMapService();
 		
 		List<TradeIssueMap> result = service.getByCreatedUserId(2);
 		
-		System.out.println(result.size());
+		System.out.println(result.size());*/
 
 /*		TradeIssueMapService  tradeIssueMapService = DataHibernateUtil.getTradeIssueMapService();
 
@@ -51,6 +51,14 @@ public class main {
 		/*TradeService tradeService = DataHibernateUtil.getTradeService();
 		List<Trade> trades = tradeService.getTradeByCriteria(null);
 		System.out.println(String.join(",", trades.stream().map(t->t.getTradeNb()).collect(Collectors.toList())));*/
+		
+		TradeService ts = DataHibernateUtil.getTradeService();
+		List<Trade> trades = ts.getLatestTrades(100);
+		System.out.println(trades.size());
+		
+		for (Trade trade : trades) {
+			System.out.println(trade.getTradeNb() + " ------- " + trade.getLastDate());
+		}
 
 	}
 

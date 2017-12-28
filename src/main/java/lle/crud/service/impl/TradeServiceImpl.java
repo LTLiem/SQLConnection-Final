@@ -14,7 +14,7 @@ import lle.crud.service.TradeService;
 @Service("TradeService")
 @Transactional
 public class TradeServiceImpl implements TradeService {
-	
+
 	@Autowired
 	private TradeDao tradeDao;
 
@@ -23,28 +23,34 @@ public class TradeServiceImpl implements TradeService {
 	}
 
 	public void deleteTrade(Trade trade) {
-		tradeDao.delete(trade);		
+		tradeDao.delete(trade);
 	}
-	
+
 	public void updateTrade(Trade trade) {
 		tradeDao.update(trade);
 	}
-	
+
 	public List<Trade> getAllTrade() {
 		return tradeDao.getAll();
 	}
 
-	public Trade getTradeByNb(String nb) {		
+	public Trade getTradeByNb(String nb) {
 		return tradeDao.get(nb);
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see lle.crud.service.TradeService#getTradeByCriteria(java.util.HashMap).
 	 * @author LuanNgu
 	 */
 	public List<Trade> getTradeByCriteria(HashMap<String, String> criteria) {
 		// TODO Auto-generated method stub
 		return tradeDao.getTradeByCriteria(criteria);
-	}	
-	
+	}
+
+	public List<Trade> getLatestTrades(Integer limit) {
+		return tradeDao.getLatestTrades(limit);
+	}
+
 }

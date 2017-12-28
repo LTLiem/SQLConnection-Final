@@ -19,4 +19,5 @@ public interface TradeService {
 	
 	public List<Trade> getTradeByCriteria(HashMap<String,String> criteria);
 	
+	public List<Trade> getLatestTrades(Integer limit);
 }

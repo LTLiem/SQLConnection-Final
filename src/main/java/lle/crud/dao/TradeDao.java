@@ -12,4 +12,7 @@ public interface TradeDao extends Dao<Trade> {
 	 * @return
 	 */
 	public List<Trade> getTradeByCriteria(HashMap<String,String> criteria);
+	
+	//Get 1000 latest trade
+	public List<Trade> getLatestTrades(Integer limit);
 }
